@@ -16,7 +16,7 @@ const gameBoard = (() => {
     }
     const reset = () => {
         for (let i= 0; i< _board.length; i++) {
-            return _board[i] = ''; 
+             _board[i] = ''; 
         }
     }
 
@@ -30,15 +30,28 @@ const gameBoard = (() => {
 
 const displayController = (() => {
     const _boardCell = document.querySelectorAll('.board-cell');
+    const _restartBtn = document.querySelectorAll('button');
 
     _boardCell.forEach(cell => {
-        cell.addEventListener('click', (e) => {
-
-            myGame.gameRound(parseInt(e.target.dataset.index));
-            cell.textContent = gameBoard.boardIndex(cell.id);
-
-        }, {once:true});        
+        cell.addEventListener('click', _clickHandler);        
     });
+
+    _restartBtn.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const _messages = document.getElementById('message');
+            myGame.reset();
+            gameBoard.reset();
+            _boardCell.forEach(cell => {cell.textContent = ''});
+            _messages.textContent = "Let's Play";
+        } )
+    })
+
+    function _clickHandler(e) {
+        if (myGame.isOver()||this.textContent !=='') return;
+
+        myGame.gameRound(parseInt(e.target.dataset.index));
+        this.textContent = gameBoard.boardIndex(this.id);
+    }
 })
 ();
 
@@ -49,30 +62,39 @@ const myGame = (() => {
     const _Player = (mark) => {
         this.mark = mark;
 
-        const playerMark = () => {
+        const _playerMark = () => {
             return mark;
         };
         
-        return {playerMark};
+        return {_playerMark};
 
     };
 
-    const playerOne = _Player('X');
-    const playerTwo = _Player ('O');
-    let roundCounter = 1;
+    const _playerOne = _Player('X');
+    const _playerTwo = _Player ('O');
+    let _roundCounter = 1;
+    let gameOver = false;
+
+    const _messages = document.getElementById('message');
 
     const gameRound = (boardIndex) => {
 
         gameBoard.setIndexContent(boardIndex, _currentPlayer());
         if (_whoWins(boardIndex) === true) {
-            window.alert('You win!');
+            _messages.textContent = `Congratulatiosn player ${_currentPlayer()}, you Won!`;
+            gameOver = true;
+            return;
         }
-        roundCounter++;
+        if (_roundCounter === 9) {
+            _messages.textContent = 'It´s a Draw';
+            gameOver = true;
+        }
+        _roundCounter++;
     }
 
     const _currentPlayer = () => {
-        if (roundCounter % 2 === 1) return playerOne.playerMark()
-        else return playerTwo.playerMark();
+        if (_roundCounter % 2 === 1) return _playerOne._playerMark()
+        else return _playerTwo._playerMark();
     }
 
     const _whoWins = (boardIndex) => {
@@ -97,9 +119,18 @@ const myGame = (() => {
             )
         )
     }
+
+    const reset = () => {
+         _roundCounter = 1;
+         gameOver = false;
+    }
+
+    const isOver = () => {
+        return gameOver;
+    };
     
     return{
-        gameRound
+        gameRound, reset, isOver
     };
     
 })
