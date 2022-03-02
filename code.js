@@ -3,8 +3,8 @@
 //MODULE PATTERN 01 = This module manages the changes inside the _board array and return the info about it.
 
 const gameBoard = (() => {
-    // const _board = ['', '', '', '', '', '', '', '', ''];
-    const _board = ['X', 'O', 'O', 'X', 'O', 'X', 'O', 'X', 'X'];
+    const _board = ['', '', '', '', '', '', '', '', ''];
+    // const _board = ['X', 'O', 'O', 'X', 'O', 'X', 'O', 'X', 'X'];
 
     const  boardIndex = (index) => {
         if (index > _board.length) return;
@@ -33,12 +33,24 @@ const displayController = (() => {
 
     _boardCell.forEach(cell => {
         cell.addEventListener('click', (e) => {
-            cell.textContent = gameBoard.boardIndex(e.target.dataset.index);
-        })        
+
+            myGame.gameRound(parseInt(e.target.dataset.index));
+            _updateBoard();
+            cell.textContent = gameBoard.boardIndex(cell.id);
+
+        }, {once:true});        
     });
+
+    const _updateBoard = () => {
+        for(let i = 0; i<_boardCell; i++){
+            _boardCell[i].textContent = gameBoard.boardIndex(i);
+        }
+    };
+
 })
 ();
 
+//MODULE PATTERN 03 =
 
 const myGame = (() => {
 
@@ -54,10 +66,23 @@ const myGame = (() => {
     };
 
     const playerOne = Player('X');
-    const playerTwo = Player ('Y');
+    const playerTwo = Player ('O');
     let roundCounter = 1;
 
+    const gameRound = (boardIndex) => {
+
+        gameBoard.setIndexContent(boardIndex, currentPlayer());
+        roundCounter++;
+    }
+
+    const currentPlayer = () => {
+        if (roundCounter % 2 === 1) return playerOne.playerMark()
+        else return playerTwo.playerMark();
+    }
     
+    return{
+        gameRound
+    };
     
 })
 ();
