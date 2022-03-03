@@ -203,3 +203,42 @@ body{
     opacity: 1;
     pointer-events: all;
 }
+
+//MEDIA QUERIES------------------------------------------------------------------
+@media (max-width: 640px) {
+    .main-container{
+        .gameboard{
+            height: 300px;
+            width: 300px;
+            .board-cell{
+                height: var.$cell-size-sc640;
+                width: var.$cell-size-sc640;
+            }
+            
+            .board-cell.circle::before{
+                width: var.$mark-size-sc640;
+                height: var.$mark-size-sc640;
+                border-radius: 50%;
+            }
+
+            .board-cell.x::before,
+            .board-cell.x::after{
+                width: var.$mark-size-sc640 * .15;
+                height: var.$mark-size-sc640;
+            }
+        }
+    }
+    
+    .gameboard.x .board-cell:not(.x):not(.circle):hover::before,
+    .gameboard.x .board-cell:not(.x):not(.circle):hover::after{
+        width: var.$mark-size-sc640 * .15;
+        height: var.$mark-size-sc640;
+    }
+
+    .gameboard.circle .board-cell:not(.x):not(.circle):hover::before,
+    .gameboard.circle .board-cell:not(.x):not(.circle):hover::after{
+    content: '';
+        width: var.$mark-size-sc640;
+        height: var.$mark-size-sc640;
+    }
+}

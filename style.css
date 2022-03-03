@@ -186,4 +186,38 @@ body {
   pointer-events: all;
 }
 
+@media (max-width: 640px) {
+  .main-container .gameboard {
+    height: 300px;
+    width: 300px;
+  }
+  .main-container .gameboard .board-cell {
+    height: 100px;
+    width: 100px;
+  }
+  .main-container .gameboard .board-cell.circle::before {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+  }
+  .main-container .gameboard .board-cell.x::before,
+.main-container .gameboard .board-cell.x::after {
+    width: 13.5px;
+    height: 90px;
+  }
+
+  .gameboard.x .board-cell:not(.x):not(.circle):hover::before,
+.gameboard.x .board-cell:not(.x):not(.circle):hover::after {
+    width: 13.5px;
+    height: 90px;
+  }
+
+  .gameboard.circle .board-cell:not(.x):not(.circle):hover::before,
+.gameboard.circle .board-cell:not(.x):not(.circle):hover::after {
+    content: "";
+    width: 90px;
+    height: 90px;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */
