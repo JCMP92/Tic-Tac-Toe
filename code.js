@@ -41,8 +41,11 @@ const displayController = (() => {
             const _messages = document.getElementById('message');
             myGame.reset();
             gameBoard.reset();
-            _boardCell.forEach(cell => {cell.textContent = ''});
             _messages.textContent = "    ";
+            const _boardClass = document.getElementById('gameboard');
+            _boardClass.classList.remove('circle');
+            _boardClass.classList.add('x');
+            _boardCell.forEach(cell => cell.classList.remove('x', 'circle'));
             _closeModal();
         } )
     })
@@ -51,7 +54,9 @@ const displayController = (() => {
         if (myGame.isOver()||this.textContent !=='') return;
 
         myGame.gameRound(parseInt(e.target.dataset.index));
-        this.textContent = gameBoard.boardIndex(this.id);
+        if (gameBoard.boardIndex(this.id) === 'X')
+        this.classList.add('x');
+        else this.classList.add('circle');
     }
 
     const _closeModal = () => {
@@ -104,9 +109,17 @@ const myGame = (() => {
     }
 
     const _currentPlayer = () => {
-        if (_roundCounter % 2 === 1) return _playerOne._playerMark()
-        else return _playerTwo._playerMark();
+        const _boardClass = document.getElementById('gameboard');
+        if (_roundCounter % 2 === 1) 
+            {_boardClass.classList.remove('x');
+            _boardClass.classList.add('circle');
+            return _playerOne._playerMark();}
+        else 
+            {_boardClass.classList.remove('circle');
+            _boardClass.classList.add('x');
+            return _playerTwo._playerMark();}
     }
+
 
     const _whoWins = (boardIndex) => {
         const _winnerComb = [
