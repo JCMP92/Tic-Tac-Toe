@@ -1,8 +1,12 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   display: flex;
   justify-content: center;
   align-content: center;
-  background-color: #0a0a0a;
+  background-color: #360034;
 }
 
 .main-container {
@@ -19,13 +23,20 @@ body {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   height: 600px;
-  max-height: 80%;
   width: 600px;
-  max-width: 80%;
   background-color: black;
 }
-.main-container .gameboard div {
-  background-color: #050505;
+.main-container .gameboard .board-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(#41003d, #1c0022);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: white;
+  box-shadow: 5px 10px 20px #e209e2;
+  width: 200px;
+  height: 200px;
 }
 
 .modal {
