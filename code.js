@@ -42,7 +42,8 @@ const displayController = (() => {
             myGame.reset();
             gameBoard.reset();
             _boardCell.forEach(cell => {cell.textContent = ''});
-            _messages.textContent = "Let's Play";
+            _messages.textContent = "    ";
+            _closeModal();
         } )
     })
 
@@ -51,6 +52,14 @@ const displayController = (() => {
 
         myGame.gameRound(parseInt(e.target.dataset.index));
         this.textContent = gameBoard.boardIndex(this.id);
+    }
+
+    const _closeModal = () => {
+        const modal = document.getElementById('modal');
+        const overlay = document.getElementById('overlay');
+        
+        modal.classList.remove('active');
+        overlay.classList.remove('active');
     }
 })
 ();
@@ -82,11 +91,13 @@ const myGame = (() => {
         gameBoard.setIndexContent(boardIndex, _currentPlayer());
         if (_whoWins(boardIndex) === true) {
             _messages.textContent = `Congratulatiosn player ${_currentPlayer()}, you Won!`;
+            _openModal();
             gameOver = true;
             return;
         }
         if (_roundCounter === 9) {
             _messages.textContent = 'It´s a Draw';
+            _openModal();
             gameOver = true;
         }
         _roundCounter++;
@@ -129,6 +140,16 @@ const myGame = (() => {
         return gameOver;
     };
     
+    const _openModal = () => {
+        const modal = document.getElementById('modal');
+        const overlay = document.getElementById('overlay');
+
+        modal.classList.add('active');
+        overlay.classList.add('active');
+    }
+
+    
+
     return{
         gameRound, reset, isOver
     };

@@ -2,25 +2,92 @@ body {
   display: flex;
   justify-content: center;
   align-content: center;
+  background-color: black;
 }
 
 .main-container {
   display: flex;
-  width: 90vw;
-  height: 90vh;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
   justify-content: center;
   align-items: center;
+  background-color: none;
 }
 .main-container .gameboard {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  height: 500px;
-  width: 500px;
+  height: 600px;
+  max-height: 80%;
+  width: 600px;
+  max-width: 80%;
   background-color: black;
 }
 .main-container .gameboard div {
-  background-color: aqua;
+  background-color: #5a5a5a;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  border: none;
+  z-index: 10;
+  background-color: white;
+  width: 600px;
+  max-width: 80%;
+}
+.modal .modal-header {
+  padding: 5px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: gray;
+  color: white;
+}
+.modal .modal-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.modal .modal-body button {
+  border: none;
+  outline: none;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+.modal .modal-body button:active {
+  transform: scale(0.94);
+}
+.modal .modal-body button:hover {
+  transform: scale(1.1);
+}
+
+.modal.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+#overlay {
+  position: fixed;
+  opacity: 0;
+  transition: 200ms esae-in-out;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+#overlay.active {
+  opacity: 1;
+  pointer-events: all;
 }
 
 /*# sourceMappingURL=style.css.map */

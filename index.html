@@ -9,13 +9,8 @@
     <title>Document</title>
 </head>
 <body>
-    <header>
-        <h1>Tic Tac Toe</h1>
-    </header>
     <div class="main-container">
-        <div class="messages">
-            <p id="message">Let's Play</p>
-        </div>
+        
         <div class="gameboard">
            <div class="board-cell" id="0" data-index="0"></div>
            <div class="board-cell" id="1" data-index="1"></div>
@@ -31,5 +26,23 @@
             <button>Restart</button>
         </div>
     </div>
+    <div class="modal" id="modal">
+
+        <div class="modal-header" id="modal-header">
+            <div class="modal-title" id="modal-title">
+                <h1>Tic Tac Toe</h1>
+            </div>
+        </div>
+
+        <div class="modal-body" id="modal-body">
+            <div class="messages">
+                <p id="message">Let's Play</p>
+            </div>
+            <button id="play-again">PlayAgain?</button>
+        </div>
+    </div>
+
+    <div id="overlay"></div>
+    
 </body>
 </html>
