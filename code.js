@@ -95,7 +95,7 @@ const myGame = (() => {
 
         gameBoard.setIndexContent(boardIndex, _currentPlayer());
         if (_whoWins(boardIndex) === true) {
-            _messages.textContent = `Congratulatiosn player ${_currentPlayer()}, you Won!`;
+            _messages.textContent = `PLAYER ${_currentPlayer()} WINS!`;
             _openModal();
             gameOver = true;
             return;
