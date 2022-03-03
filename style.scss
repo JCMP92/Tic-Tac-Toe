@@ -46,9 +46,79 @@ body{
             box-shadow: 5px 10px 20px #e209e2;
             width: var.$cell-size;
             height: var.$cell-size; 
+            position: relative;
         }
+
+        .board-cell.x,
+        .board-cell.circle{
+            pointer-events: none;
+        }
+
+        
+        .board-cell.x::before,
+        .board-cell.x::after{
+            content: '';
+            position: absolute;
+            width: var.$mark-size * .15;
+            height: var.$mark-size;
+            background-color: #e209e2;
+        }
+
+        .board-cell.x::before{
+            transform: rotate(45deg);
+        }
+        .board-cell.x::after{
+            transform: rotate(-45deg);
+        }
+
+        .board-cell.circle::before{
+            content: '';
+            position: absolute;
+            width: var.$mark-size;
+            height: var.$mark-size;
+            background-color: #e209e2;
+            border-radius: 50%;
+        }
+
+        .board-cell.circle::before{
+            width: var.$mark-size;
+            height: var.$mark-size;
+            background-color: #e209e2;
+        }
+
     }
 }
+//HOVER----------------------------------------------------------------------------------------
+.gameboard.x .board-cell:not(.x):not(.circle):hover::before,
+.gameboard.x .board-cell:not(.x):not(.circle):hover::after{
+    content: '';
+    position: absolute;
+    width: var.$mark-size * .15;
+    height: var.$mark-size;
+    background-color: #570257;
+}
+.gameboard.x .board-cell:not(.x):not(.circle):hover::before{
+    transform: rotate(45deg);
+}
+.gameboard.x .board-cell:not(.x):not(.circle):hover::after{
+    transform: rotate(-45deg);
+}
+//CIRCLE CLASS-----------------------------------------------------------------------------------
+.gameboard.circle .board-cell:not(.x):not(.circle):hover::before,
+.gameboard.circle .board-cell:not(.x):not(.circle):hover::after{
+    content: '';
+    position: absolute;
+    width: var.$mark-size;
+    height: var.$mark-size;
+    background-color: #570257;
+    border-radius: 50%;
+}
+.gameboard.circle .board-cell:not(.x):not(.circle):hover::before{
+    width: var.$mark-size;
+    height: var.$mark-size;
+    background-color: #570257;
+}
+
 
 //MODAL STYLING--------------------------------------------------------------------------------
 .modal{

@@ -37,6 +37,71 @@ body {
   box-shadow: 5px 10px 20px #e209e2;
   width: 200px;
   height: 200px;
+  position: relative;
+}
+.main-container .gameboard .board-cell.x,
+.main-container .gameboard .board-cell.circle {
+  pointer-events: none;
+}
+.main-container .gameboard .board-cell.x::before,
+.main-container .gameboard .board-cell.x::after {
+  content: "";
+  position: absolute;
+  width: 27px;
+  height: 180px;
+  background-color: #e209e2;
+}
+.main-container .gameboard .board-cell.x::before {
+  transform: rotate(45deg);
+}
+.main-container .gameboard .board-cell.x::after {
+  transform: rotate(-45deg);
+}
+.main-container .gameboard .board-cell.circle::before {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  background-color: #e209e2;
+  border-radius: 50%;
+}
+.main-container .gameboard .board-cell.circle::before {
+  width: 180px;
+  height: 180px;
+  background-color: #e209e2;
+}
+
+.gameboard.x .board-cell:not(.x):not(.circle):hover::before,
+.gameboard.x .board-cell:not(.x):not(.circle):hover::after {
+  content: "";
+  position: absolute;
+  width: 27px;
+  height: 180px;
+  background-color: #570257;
+}
+
+.gameboard.x .board-cell:not(.x):not(.circle):hover::before {
+  transform: rotate(45deg);
+}
+
+.gameboard.x .board-cell:not(.x):not(.circle):hover::after {
+  transform: rotate(-45deg);
+}
+
+.gameboard.circle .board-cell:not(.x):not(.circle):hover::before,
+.gameboard.circle .board-cell:not(.x):not(.circle):hover::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  background-color: #570257;
+  border-radius: 50%;
+}
+
+.gameboard.circle .board-cell:not(.x):not(.circle):hover::before {
+  width: 180px;
+  height: 180px;
+  background-color: #570257;
 }
 
 .modal {
