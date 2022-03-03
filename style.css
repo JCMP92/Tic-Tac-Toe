@@ -2,7 +2,7 @@ body {
   display: flex;
   justify-content: center;
   align-content: center;
-  background-color: black;
+  background-color: #0a0a0a;
 }
 
 .main-container {
@@ -25,7 +25,7 @@ body {
   background-color: black;
 }
 .main-container .gameboard div {
-  background-color: #5a5a5a;
+  background-color: #050505;
 }
 
 .modal {
