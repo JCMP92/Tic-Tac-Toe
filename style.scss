@@ -1,244 +1,245 @@
 @use 'var';
 
-*{
-    box-sizing: border-box;
-    font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
-      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+* {
+  box-sizing: border-box;
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 //MIXIN--------------------------------------------------------------------------------------
-@mixin click-btn{
-    cursor: pointer;
-    &:active{
-        transform: scale(0.94);
-    }
+@mixin click-btn {
+  cursor: pointer;
+  &:active {
+    transform: scale(0.94);
+  }
 }
-
 
 //GENERAL CSS----------------------------------------------------------------------------------------------
-
-body{
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    background-color: rgb(54, 0, 52);
+html {
+  width: 100%;
+  height: 100%;
 }
-.main-container{
-    display: flex;
-    flex-direction: column;
-    width: 100vw;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    background-color: none;
-    .gameboard{
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, 1fr);
-        height: 600px;
-        width: 600px;
-        background-color: rgb(0, 0, 0);
-        
-        
-        .board-cell{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(#41003d , #1c0022);
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: white;
-            box-shadow: 5px 10px 20px #e209e2;
-            width: var.$cell-size;
-            height: var.$cell-size; 
-            position: relative;
-        }
+body {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background-color: rgb(54, 0, 52);
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+.main-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: none;
+  .gameboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    height: 600px;
+    width: 600px;
+    background-color: rgb(0, 0, 0);
 
-        .board-cell.x,
-        .board-cell.circle{
-            pointer-events: none;
-        }
-
-        
-        .board-cell.x::before,
-        .board-cell.x::after{
-            content: '';
-            position: absolute;
-            width: var.$mark-size * .15;
-            height: var.$mark-size;
-            background-color: #e209e2;
-        }
-
-        .board-cell.x::before{
-            transform: rotate(45deg);
-        }
-        .board-cell.x::after{
-            transform: rotate(-45deg);
-        }
-
-        .board-cell.circle::before{
-            content: '';
-            position: absolute;
-            width: var.$mark-size;
-            height: var.$mark-size;
-            background-color: #e209e2;
-            border-radius: 50%;
-        }
-
-        .board-cell.circle::before{
-            width: var.$mark-size;
-            height: var.$mark-size;
-            background-color: #e209e2;
-        }
-
+    .board-cell {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(#41003d, #1c0022);
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: white;
+      box-shadow: 5px 10px 20px #e209e2;
+      width: var.$cell-size;
+      height: var.$cell-size;
+      position: relative;
     }
-    
-    button{
-        margin: 50px;
-        outline: none;
-        border: none;
-        background-color: transparent;
-        color: #fa11fa;
-        font-size: 18px;
-        @include click-btn();
+
+    .board-cell.x,
+    .board-cell.circle {
+      pointer-events: none;
     }
-    button:hover{
-        color: white;
-        transform: scale(1.1);
+
+    .board-cell.x::before,
+    .board-cell.x::after {
+      content: '';
+      position: absolute;
+      width: var.$mark-size * 0.15;
+      height: var.$mark-size;
+      background-color: #e209e2;
     }
+
+    .board-cell.x::before {
+      transform: rotate(45deg);
+    }
+    .board-cell.x::after {
+      transform: rotate(-45deg);
+    }
+
+    .board-cell.circle::before {
+      content: '';
+      position: absolute;
+      width: var.$mark-size;
+      height: var.$mark-size;
+      background-color: #e209e2;
+      border-radius: 50%;
+    }
+
+    .board-cell.circle::before {
+      width: var.$mark-size;
+      height: var.$mark-size;
+      background-color: #e209e2;
+    }
+  }
+
+  button {
+    margin: 50px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color: #fa11fa;
+    font-size: 18px;
+    @include click-btn();
+  }
+  button:hover {
+    color: white;
+    transform: scale(1.1);
+  }
 }
 //HOVER----------------------------------------------------------------------------------------
 .gameboard.x .board-cell:not(.x):not(.circle):hover::before,
-.gameboard.x .board-cell:not(.x):not(.circle):hover::after{
-    content: '';
-    position: absolute;
-    width: var.$mark-size * .15;
-    height: var.$mark-size;
-    background-color: #570257;
+.gameboard.x .board-cell:not(.x):not(.circle):hover::after {
+  content: '';
+  position: absolute;
+  width: var.$mark-size * 0.15;
+  height: var.$mark-size;
+  background-color: #570257;
 }
-.gameboard.x .board-cell:not(.x):not(.circle):hover::before{
-    transform: rotate(45deg);
+.gameboard.x .board-cell:not(.x):not(.circle):hover::before {
+  transform: rotate(45deg);
 }
-.gameboard.x .board-cell:not(.x):not(.circle):hover::after{
-    transform: rotate(-45deg);
+.gameboard.x .board-cell:not(.x):not(.circle):hover::after {
+  transform: rotate(-45deg);
 }
 //CIRCLE CLASS-----------------------------------------------------------------------------------
 .gameboard.circle .board-cell:not(.x):not(.circle):hover::before,
-.gameboard.circle .board-cell:not(.x):not(.circle):hover::after{
-    content: '';
-    position: absolute;
-    width: var.$mark-size;
-    height: var.$mark-size;
-    background-color: #570257;
-    border-radius: 50%;
+.gameboard.circle .board-cell:not(.x):not(.circle):hover::after {
+  content: '';
+  position: absolute;
+  width: var.$mark-size;
+  height: var.$mark-size;
+  background-color: #570257;
+  border-radius: 50%;
 }
-.gameboard.circle .board-cell:not(.x):not(.circle):hover::before{
-    width: var.$mark-size;
-    height: var.$mark-size;
-    background-color: #570257;
+.gameboard.circle .board-cell:not(.x):not(.circle):hover::before {
+  width: var.$mark-size;
+  height: var.$mark-size;
+  background-color: #570257;
 }
-
 
 //MODAL STYLING--------------------------------------------------------------------------------
-.modal{
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0); //using scale() allows us to transition the display of modal.
-    transition: 200ms ease-in-out;
-    border: none;
-    z-index: 10;
-    background-color: white;
-    width: 600px;
-    max-width: 80%;
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0); //using scale() allows us to transition the display of modal.
+  transition: 200ms ease-in-out;
+  border: none;
+  z-index: 10;
+  background-color: white;
+  width: 600px;
+  max-width: 80%;
 
-    .modal-header{
-        padding: 5px 15px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: linear-gradient(#41003d , #1c0022);
-        color: white;
-        text-shadow:  0 0 20px #fa11fa;
+  .modal-header {
+    padding: 5px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(#41003d, #1c0022);
+    color: white;
+    text-shadow: 0 0 20px #fa11fa;
+  }
+
+  .modal-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      border: none;
+      outline: none;
+      background-color: transparent;
+      color: #41003d;
+      font-weight: bold;
+      margin-bottom: 20px;
+      @include click-btn();
     }
 
-    .modal-body{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        button{
-            border: none;
-            outline: none;
-            background-color: transparent;
-            color: #41003d;
-            font-weight: bold;
-            margin-bottom: 20px;
-            @include click-btn();
-        }
-
-        button:hover{
-            transform: scale(1.1);
-            color: #64015e;
-        }
+    button:hover {
+      transform: scale(1.1);
+      color: #64015e;
     }
+  }
 }
 
-.modal.active{
-    transform: translate(-50%, -50%) scale(1);
+.modal.active {
+  transform: translate(-50%, -50%) scale(1);
 }
 
-#overlay{
-    position: fixed;
-    opacity: 0;
-    transition: 200ms esae-in-out;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, .5);
-    pointer-events: none;
+#overlay {
+  position: fixed;
+  opacity: 0;
+  transition: 200ms esae-in-out;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
 }
-#overlay.active{
-    opacity: 1;
-    pointer-events: all;
+#overlay.active {
+  opacity: 1;
+  pointer-events: all;
 }
 
 //MEDIA QUERIES------------------------------------------------------------------
 @media (max-width: 640px) {
-    .main-container{
-        .gameboard{
-            height: 300px;
-            width: 300px;
-            .board-cell{
-                height: var.$cell-size-sc640;
-                width: var.$cell-size-sc640;
-            }
-            
-            .board-cell.circle::before{
-                width: var.$mark-size-sc640;
-                height: var.$mark-size-sc640;
-                border-radius: 50%;
-            }
+  .main-container {
+    .gameboard {
+      height: 300px;
+      width: 300px;
+      .board-cell {
+        height: var.$cell-size-sc640;
+        width: var.$cell-size-sc640;
+      }
 
-            .board-cell.x::before,
-            .board-cell.x::after{
-                width: var.$mark-size-sc640 * .15;
-                height: var.$mark-size-sc640;
-            }
-        }
-    }
-    
-    .gameboard.x .board-cell:not(.x):not(.circle):hover::before,
-    .gameboard.x .board-cell:not(.x):not(.circle):hover::after{
-        width: var.$mark-size-sc640 * .15;
-        height: var.$mark-size-sc640;
-    }
-
-    .gameboard.circle .board-cell:not(.x):not(.circle):hover::before,
-    .gameboard.circle .board-cell:not(.x):not(.circle):hover::after{
-    content: '';
+      .board-cell.circle::before {
         width: var.$mark-size-sc640;
         height: var.$mark-size-sc640;
+        border-radius: 50%;
+      }
+
+      .board-cell.x::before,
+      .board-cell.x::after {
+        width: var.$mark-size-sc640 * 0.15;
+        height: var.$mark-size-sc640;
+      }
     }
+  }
+
+  .gameboard.x .board-cell:not(.x):not(.circle):hover::before,
+  .gameboard.x .board-cell:not(.x):not(.circle):hover::after {
+    width: var.$mark-size-sc640 * 0.15;
+    height: var.$mark-size-sc640;
+  }
+
+  .gameboard.circle .board-cell:not(.x):not(.circle):hover::before,
+  .gameboard.circle .board-cell:not(.x):not(.circle):hover::after {
+    content: '';
+    width: var.$mark-size-sc640;
+    height: var.$mark-size-sc640;
+  }
 }
